@@ -9,6 +9,16 @@
   --amber: #E3A857;
   --dot-muted: #4B5654;
 
+  /* per-project accent palette — an ANSI-terminal-style color per service */
+  --c-analyst: #5EEAD4;
+  --c-analyst-glow: rgba(94, 234, 212, 0.35);
+  --c-gateway: #A78BFA;
+  --c-gateway-glow: rgba(167, 139, 250, 0.35);
+  --c-clinic: #FB7185;
+  --c-clinic-glow: rgba(251, 113, 133, 0.35);
+  --c-calendar: #FBBF24;
+  --c-calendar-glow: rgba(251, 191, 36, 0.35);
+
   --font-display: 'JetBrains Mono', 'Courier New', monospace;
   --font-body: 'IBM Plex Mono', 'Courier New', monospace;
 }
@@ -100,19 +110,47 @@ button:focus-visible {
 }
 
 .hero h1 {
-  margin: 0 0 12px;
+  margin: 4px 0 20px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(2.5rem, 9vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
 }
 
 .tagline {
-  margin: 0 0 24px;
+  margin: 0 0 16px;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
   max-width: 46ch;
 }
+
+.tagline-accent {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+.tag {
+  --tag-color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border: 1px solid var(--tag-color);
+  border-radius: 3px;
+  color: var(--tag-color);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tag--gateway { --tag-color: var(--c-gateway); }
+.tag--clinic { --tag-color: var(--c-clinic); }
+.tag--calendar { --tag-color: var(--c-calendar); }
 
 .contact-links {
   display: flex;
@@ -156,14 +194,21 @@ button:focus-visible {
 /* ---- scroll-reveal (cards, one-shot via IntersectionObserver) ---- */
 
 .card {
+  --card-accent: var(--c-analyst);
+  --card-glow: var(--c-analyst-glow);
   opacity: 0;
   transform: translateY(16px);
   background: var(--surface);
   border: 1px solid var(--border);
+  border-top: 3px solid var(--card-accent);
   border-radius: 8px;
   overflow: hidden;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
+
+.card--gateway { --card-accent: var(--c-gateway); --card-glow: var(--c-gateway-glow); }
+.card--clinic { --card-accent: var(--c-clinic); --card-glow: var(--c-clinic-glow); }
+.card--calendar { --card-accent: var(--c-calendar); --card-glow: var(--c-calendar-glow); }
 
 .card.in-view {
   animation: fadeUp 0.55s ease forwards;
@@ -176,8 +221,8 @@ button:focus-visible {
 
 .card:hover,
 .card:focus-within {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.25), 0 12px 24px -12px rgba(94, 234, 212, 0.25);
+  border-color: var(--card-accent);
+  box-shadow: 0 0 0 1px var(--card-glow), 0 12px 24px -12px var(--card-glow);
   transform: translateY(-3px);
 }
 
@@ -278,10 +323,10 @@ button:focus-visible {
 
 .card .metric {
   margin: 4px 0 0;
-  color: var(--accent);
+  color: var(--card-accent);
   font-size: 0.92rem;
   font-weight: 500;
-  text-shadow: 0 0 16px rgba(94, 234, 212, 0.35);
+  text-shadow: 0 0 16px var(--card-glow);
 }
 
 .card .links {
@@ -295,6 +340,11 @@ button:focus-visible {
 
 .card .links a {
   font-size: 0.85rem;
+  color: var(--card-accent);
+}
+
+.card .links a:hover {
+  border-bottom-color: var(--card-accent);
 }
 
 footer {

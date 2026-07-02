@@ -85,6 +85,39 @@ Métricas copiadas verbatim (mismo formato numérico) de cada `CASE_STUDY.md` fu
 - Calendar → repo + case study only, no demo link — no cloud deploy in v1, OAuth
   scope is single-developer-account only (see calendar repo's own case study §9).
 
+## 2026-07-02 — Round 3: per-project color + dramatic hero (user: "looks the same")
+
+Round 2's terminal chrome/motion polish still read as "practically the same" —
+same layout, same monochrome cyan-on-black. Asked the user what "better" meant
+concretely rather than guessing again; they picked two directions plus a "not
+sure, evaluate" on a third:
+
+- **Per-project accent color, ANSI-style**: each card gets its own hue instead of
+  one repeated cyan — `--c-analyst` cyan `#5EEAD4`, `--c-gateway` violet `#A78BFA`,
+  `--c-clinic` coral `#FB7185`, `--c-calendar` amber `#FBBF24`. Applied to each
+  card's top border stripe, metric text (+ glow), and its own links — a "syntax
+  highlighting" reading that fits the terminal concept rather than an arbitrary
+  rainbow. The status-dot (live/muted) deliberately keeps its own separate
+  cyan/gray semantic, unchanged — two different color systems, two different
+  meanings, kept from colliding (see the titlebar-dots note above for the same
+  principle).
+- **Dramatic hero type**: `h1` went from `clamp(1.75rem, 4vw, 2.5rem)` to
+  `clamp(2.5rem, 9vw, 5.5rem)` — big enough to wrap the name across two lines by
+  design, an editorial/poster effect rather than a single modest line. Added a
+  `stack-tags` row under the tagline previewing the four project colors by name
+  (`SQL Agent`, `LLM Gateway`, ...) — a structural device that's actually
+  informative (it previews the grid below), not decoration for its own sake.
+- **Screenshots/GIFs of the live demos — considered, rejected for v1**: only 2 of
+  4 projects have a real web UI to capture honestly (analyst's `/` landing page,
+  gateway's `/docs` Swagger). The clinic has no public demo (privacy) and the
+  calendar agent is CLI/OAuth with no cloud deploy — nothing real to screenshot
+  for either without fabricating a mockup, which would break the spec's
+  "zero invented numbers/content" rule if not very explicitly labeled as
+  illustrative. Screenshots on 2 cards and nothing on the other 2 would read as
+  broken, not intentional. **v2 candidate**: revisit once/if the clinic ships a
+  demo-safe public sandbox and the calendar agent gets a Layer-2 web UI deployed
+  — both would make honest screenshots possible for all four.
+
 ## Repo fix (out-of-hub)
 
 `semantic-llm-gateway/docs/CASE_STUDY.md` §9 said "no public URL yet" — stale; the
