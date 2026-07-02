@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piero Brun Coronado — LLM Agents &amp; RAG Systems</title>
+<meta name="description" content="I ship LLM agents & RAG systems to production. Live demos of a self-correcting SQL agent, an LLM gateway, a WhatsApp clinic agent, and a calendar agent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <p class="prompt">$ whoami</p>
+  <h1>Piero Brun Coronado</h1>
+  <p class="tagline">I ship LLM agents &amp; RAG systems to production.</p>
+  <nav class="contact-links" aria-label="Contact links">
+    <a href="https://github.com/pierobruncoronado" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://linkedin.com/in/pierobruncoronado" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:piero.brun.coronado@gmail.com">Email</a>
+  </nav>
+</header>
+
+<main class="grid">
+
+  <article class="card">
+    <div class="card-status">
+      <span class="dot dot--live" aria-hidden="true"></span>
+      <span class="status-label">Live demo · cold start ~30–50s</span>
+    </div>
+    <h2>Analyst — Conversational SQL Agent</h2>
+    <p class="problem">Ad-hoc data questions wait hours for an analyst to write a query — this agent closes the handoff, with auto-correction on DB errors.</p>
+    <p class="stack"><span class="eyebrow">Stack</span>Python · LangGraph · Claude Haiku 4.5 · Postgres/Supabase · FastAPI</p>
+    <p class="metric">7/7 hard assertions, 3/3 LLM-judge · $0.0170/run</p>
+    <div class="links">
+      <a href="https://analyst-sql-agent.onrender.com" target="_blank" rel="noopener">Live Demo</a>
+      <a href="https://github.com/pierobruncoronado/analyst-sql-agent" target="_blank" rel="noopener">Repo</a>
+      <a href="https://github.com/pierobruncoronado/analyst-sql-agent/blob/main/CASE_STUDY.md" target="_blank" rel="noopener">Case Study</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-status">
+      <span class="dot dot--live" aria-hidden="true"></span>
+      <span class="status-label">Live demo · cold start ~30–50s</span>
+    </div>
+    <h2>Semantic LLM Gateway</h2>
+    <p class="problem">LLM apps have no shared layer for cost control, observability, or prompt-injection defense — this gateway adds all three in front of Anthropic's API.</p>
+    <p class="stack"><span class="eyebrow">Stack</span>FastAPI · Voyage embeddings · Upstash Vector · Anthropic API</p>
+    <p class="metric">0% false positives · 44.44% cache hit-rate (23-pair calibration)</p>
+    <div class="links">
+      <a href="https://semantic-llm-gateway.onrender.com/docs" target="_blank" rel="noopener">Live Demo</a>
+      <a href="https://github.com/pierobruncoronado/semantic-llm-gateway" target="_blank" rel="noopener">Repo</a>
+      <a href="https://github.com/pierobruncoronado/semantic-llm-gateway/blob/master/docs/CASE_STUDY.md" target="_blank" rel="noopener">Case Study</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-status">
+      <span class="dot dot--muted" aria-hidden="true"></span>
+      <span class="status-label">Demo on request</span>
+    </div>
+    <h2>WhatsApp Clinic Agent</h2>
+    <p class="problem">Dental clinics lose leads after hours — this agent answers from the clinic's real docs, books appointments, and escalates emergencies, 24/7.</p>
+    <p class="stack"><span class="eyebrow">Stack</span>FastAPI · Claude Haiku · Voyage + pgvector · Twilio · Railway</p>
+    <p class="metric">100% eval accuracy (up from 64%) · $0.00448/conversation</p>
+    <div class="links">
+      <a href="mailto:piero.brun.coronado@gmail.com?subject=Demo%20request%20%E2%80%94%20WhatsApp%20Clinic%20Agent">Demo on Request</a>
+      <a href="https://github.com/pierobruncoronado/whatsapp-clinic-agent" target="_blank" rel="noopener">Repo</a>
+      <a href="https://github.com/pierobruncoronado/whatsapp-clinic-agent/blob/main/CASE_STUDY.md" target="_blank" rel="noopener">Case Study</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-status">
+      <span class="dot dot--muted" aria-hidden="true"></span>
+      <span class="status-label">Repo &amp; case study only — no demo, by design (OAuth)</span>
+    </div>
+    <h2>Conversational Calendar Agent</h2>
+    <p class="problem">NL calendar control hits the real integration wall — OAuth, UTC offsets, destructive writes — this agent handles all three with human-in-the-loop confirmation.</p>
+    <p class="stack"><span class="eyebrow">Stack</span>Python · Claude Haiku · Google Calendar API · OAuth 2.0</p>
+    <p class="metric">68/68 tests passing · 4 live-integration bugs caught &amp; fixed</p>
+    <div class="links">
+      <a href="https://github.com/pierobruncoronado/google-calendar-agent" target="_blank" rel="noopener">Repo</a>
+      <a href="https://github.com/pierobruncoronado/google-calendar-agent/blob/master/CASE_STUDY.md" target="_blank" rel="noopener">Case Study</a>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Piero Brun Coronado</p>
+</footer>
+
+</body>
+</html>
