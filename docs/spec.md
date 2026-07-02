@@ -23,17 +23,19 @@ analytics, animaciones/scroll effects, toggle dark/light, CMS, i18n,
 testimonios, multi-página. Nada de esto antes de shippear.
 
 ## Criterios de aceptación
-- [ ] URL pública en GitHub Pages responde; carga rápida (sin frameworks 
-      pesados de runtime).
-- [ ] 4 cards (analyst, gateway, clínica, calendar) con problema→stack→
+- [x] URL pública en GitHub Pages responde; carga rápida (sin frameworks 
+      pesados de runtime). → https://pierobruncoronado.github.io/portfolio-hub/
+      (200, verificado con curl y en navegador).
+- [x] 4 cards (analyst, gateway, clínica, calendar) con problema→stack→
       métrica→links. Clínica = "demo on request"; calendar = repo/case 
       study sin demo (por diseño, OAuth).
-- [ ] Links de demo apuntan a Render con nota visible de cold-start 
+- [x] Links de demo apuntan a Render con nota visible de cold-start 
       (30-60s free tier) — honestidad + evita que el screener crea que 
       está roto.
-- [ ] Header: nombre + posicionamiento en 1 línea ("I ship LLM agents & 
+- [x] Header: nombre + posicionamiento en 1 línea ("I ship LLM agents & 
       RAG systems to production") + GitHub/LinkedIn/email.
-- [ ] Usable en móvil (verificado, no asumido).
+- [x] Usable en móvil (verificado, no asumido) — probado a 390px de ancho,
+      grid colapsa a una columna, sin overflow horizontal.
 
 ## Timebox
 1 día. Si revienta: recortar alcance (shippear con 2 cards), nunca extender.
