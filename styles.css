@@ -1,6 +1,7 @@
 :root {
   --bg: #0A0E0F;
   --surface: #12181A;
+  --titlebar: #161D1F;
   --border: #1F2E2C;
   --text: #E4E7E5;
   --muted: #6B7A78;
@@ -22,7 +23,12 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 900px 480px at 50% -10%, rgba(94, 234, 212, 0.09), transparent 60%),
+    linear-gradient(rgba(94, 234, 212, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 234, 212, 0.035) 1px, transparent 1px);
+  background-size: auto, 34px 34px, 34px 34px;
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.55;
@@ -45,10 +51,44 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+/* ---- boot-sequence reveal (header, one-shot on load) ---- */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 2px;
+  background: var(--accent);
+  vertical-align: -0.15em;
+  animation: blink 1s step-end infinite;
+}
+
 .hero {
   max-width: 880px;
   margin: 0 auto;
-  padding: 72px 24px 48px;
+  padding: 72px 24px 40px;
 }
 
 .prompt {
@@ -89,10 +129,19 @@ button:focus-visible {
   border-bottom-color: var(--accent);
 }
 
+.section-eyebrow {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
 .grid {
   max-width: 880px;
   margin: 0 auto;
-  padding: 0 24px 64px;
+  padding: 12px 24px 64px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
@@ -104,11 +153,63 @@ button:focus-visible {
   }
 }
 
+/* ---- scroll-reveal (cards, one-shot via IntersectionObserver) ---- */
+
 .card {
+  opacity: 0;
+  transform: translateY(16px);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card.in-view {
+  animation: fadeUp 0.55s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0ms; }
+.card:nth-child(2) { animation-delay: 90ms; }
+.card:nth-child(3) { animation-delay: 180ms; }
+.card:nth-child(4) { animation-delay: 270ms; }
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.25), 0 12px 24px -12px rgba(94, 234, 212, 0.25);
+  transform: translateY(-3px);
+}
+
+.card-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--titlebar);
+  border-bottom: 1px solid var(--border);
+}
+
+.win-dots {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.win-dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--dot-muted);
+}
+
+.win-path {
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.card-body {
+  padding: 20px 24px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -180,6 +281,7 @@ button:focus-visible {
   color: var(--accent);
   font-size: 0.92rem;
   font-weight: 500;
+  text-shadow: 0 0 16px rgba(94, 234, 212, 0.35);
 }
 
 .card .links {
@@ -204,8 +306,12 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  .reveal,
+  .card,
+  .cursor {
     animation: none !important;
     transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

@@ -10,8 +10,37 @@
   body/metrics, same family uppercase + tracked at ~11px for eyebrows (`STACK`,
   status labels).
 - Layout: terminal-prompt header (`$ whoami`) + 2×2 card grid (desktop) / single
-  column (mobile, <720px). No animation, no scroll effects — matches spec's "no
-  dynamism from the hub itself."
+  column (mobile, <720px).
+
+## 2026-07-01 — Round 2: terminal chrome + motion (user feedback: "too simple")
+
+User approved a second pass and explicitly authorized animation/scroll effects
+("si consideras que el beneficio es amplio"), amending the original v1 exclusion —
+see spec.md's amended "Fuera de alcance." Changes made:
+
+- **Card titlebar**: each card got a terminal-window chrome — three muted dots
+  (decorative, deliberately monochrome, not the red/amber/green of a real macOS
+  titlebar) + the project's real repo path (`~/analyst-sql-agent`, etc). Muted/
+  monochrome so it doesn't collide with the status-dot's actual color semantics
+  (live/muted) sitting a few lines below it.
+- **Background texture**: a faint static cyan grid (`34px` cells, ~3.5% opacity) +
+  a radial glow behind the hero. Static, not scroll-linked — texture, not motion.
+- **Boot-sequence reveal**: header lines (`$ whoami`, name, tagline, contact links,
+  the `$ ls -la ./services` eyebrow) fade/rise in with a ~90ms stagger, once, on
+  page load. A blinking block cursor sits after `$ whoami` — the one continuous
+  animation on the page, chosen because it's a real terminal affordance (not
+  decorative motion) and is cheap/unobtrusive at 1s period.
+- **Scroll-reveal**: cards fade/rise in via `IntersectionObserver` the first time
+  each crosses 15% into view (`script.js`), once per card, then unobserved — no
+  repeat-on-scroll, no parallax.
+- **Hover/focus micro-interaction**: card border brightens to accent + 3px lift,
+  0.15s, on `:hover`/`:focus-within`.
+- **Restraint**: no looping decoration beyond the cursor blink; no scroll-linked
+  parallax; single orchestrated load moment rather than scattered effects (per
+  frontend-design skill's warning against "AI-generated" motion clutter).
+- **Accessibility**: `@media (prefers-reduced-motion: reduce)` forces all of the
+  above to their static end-state (`opacity:1`, `transform:none`, animations off)
+  — verified by inspecting computed styles, not assumed.
 
 ## Status-dot semantics: category, not live health
 

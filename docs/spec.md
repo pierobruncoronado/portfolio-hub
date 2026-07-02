@@ -12,6 +12,9 @@ desde el celular.
 - Cards: problema (1 línea) → stack → métrica real → links (Live Demo / 
   Repo / Case Study).
 - El dinamismo viene de los demos vivos, NO de animaciones del hub.
+  **Enmendado 2026-07-01:** usuario autorizó explícitamente animaciones/scroll
+  effects si el beneficio visual es amplio — ver "Fuera de alcance" y
+  docs/DECISIONS.md.
 - Stack: estático (HTML/CSS/JS o React build estático). Deploy: GitHub Pages 
   — gratis, no se pausa nunca, cero infraestructura nueva que monitorear.
 - Skill frontend-design obligatoria para la dirección estética.
@@ -19,8 +22,16 @@ desde el celular.
 
 ## Fuera de alcance (vinculante)
 Blog, secciones "about me" largas, formulario de contacto (mailto basta), 
-analytics, animaciones/scroll effects, toggle dark/light, CMS, i18n, 
-testimonios, multi-página. Nada de esto antes de shippear.
+analytics, toggle dark/light, CMS, i18n, testimonios, multi-página. Nada de 
+esto antes de shippear.
+
+~~animaciones/scroll effects~~ — excluido originalmente, **enmendado
+2026-07-01**: usuario autorizó animaciones/scroll effects con criterio de
+"beneficio amplio". Implementado: boot-sequence de header (una sola vez, on
+load), scroll-reveal de cards vía IntersectionObserver (una sola vez por
+card), micro-interacción de hover, cursor parpadeante en el prompt. Todo
+respeta `prefers-reduced-motion: reduce` (se desactiva por completo). Sin
+loops decorativos ni parallax.
 
 ## Criterios de aceptación
 - [x] URL pública en GitHub Pages responde; carga rápida (sin frameworks 
